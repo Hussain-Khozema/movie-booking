@@ -1,10 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    {% load static %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+{#    <link rel="stylesheet" href="{% static "css/style.css" %}">#}
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+    {# Load the tag library #}
+    {% load bootstrap4 %}
+
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+
+    {# Display django.contrib.messages as Bootstrap alerts #}
+    {% bootstrap_messages %}
+
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    {% block title %}
+    {% endblock %}
+{#    <script src="{% static "js/common.js" %}"></script>#}
 </head>
 <body>
-<h1> Home Page</h1>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Kim's Convenience Modern Cinema</a>
+      <div class="container-fluid">
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Movies
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#">All movies</a></li>
+                <li><a href="#">Now showing</a></li>
+                <li><a href="#">Upcoming</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Book Ticket <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active pl-3">
+              <form class="form-inline">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+          </li>
+          <li class="nav-item active pl-lg-5">
+              <button type="button" class="btn btn-danger">Login/Signup</button>
+          </li>
+        </ul>
+
+      </div>
+      </div>
+    </nav>
+
+{#    <div id="loginModal">#}
+{#        {% block login_holder %}#}
+{#        <form id="login_form" method="post" action="/accounts/login/">#}
+{#            {% csrf_token %}#}
+{#            <input type="hidden" name="next" value="{% if next %}{{ next }}{% else %}{{ request.path }}{% endif %}" />#}
+{#            <div class="form-group">#}
+{#                <label>Username: </label>#}
+{#                <input type="text" class="form-control"  name="username" value="" size="50" >#}
+{#            </div>#}
+{#            <div class="form-group">#}
+{#                <label>Password: </label>#}
+{#                <input type="password" class="form-control"  name="password" value="" size="50" >#}
+{#            </div>#}
+{#            <div class="pull-right">#}
+{#                <a role="button" href="/accounts/register/" class="btn btn-default">Register</a>#}
+{#                <input class="btn btn-primary" type="submit" value="Sign In" />#}
+{#            </div>#}
+{#        </form>#}
+{#        {% endblock %}#}
+{#    </div>#}
+
+<div id="content" class="container-fluid">
+    {% block content %}
+    {% endblock %}
+</div>
 </body>
-</html>
