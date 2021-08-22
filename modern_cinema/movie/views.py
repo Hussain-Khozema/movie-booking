@@ -1,8 +1,8 @@
 from django.http import Http404
 from django.shortcuts import render
 from .models import Movie
-# from theatre.models import Show
-# import datetime
+from theatre.models import Show
+import datetime
 
 # Create your views here.
 
@@ -24,24 +24,25 @@ def movie_list(request):
 	return render(request, 'movie/movie_list.html', {'movies': movie_list})
 
 
-# def movie_details(request, movie_id):
-# 	try:
-# 		movie_info = Movie.objects.get(pk=movie_id)
-# 		shows = Show.objects.filter(movie=movie_id,
-# 			date=datetime.date.today()).order_by('theatre')
-# 		show_list = []
-# 		show_by_theatre = []
-# 		theatre = shows[0].theatre
-# 		for i in range(0, len(shows)):
-# 			if theatre != shows[i].theatre:
-# 				theatre = shows[i].theatre
-# 				show_list.append(show_by_theatre)
-# 				show_by_theatre = []
-# 			show_by_theatre.append(shows[i])
-#
-# 		show_list.append(show_by_theatre)
-#
-# 	except Movie.DoesNotExist:
-# 		raise Http404("Page does not exist")
-# 	return render(request, 'movie/movie_details.html',
-# 		{'movie_info': movie_info, 'show_list': show_list})
+def movie_details(request, movie_id):
+	try:
+		movie_info = Movie.objects.get(pk=movie_id)
+		print(movie_info.id)
+		shows = Show.objects.filter(movie=movie_id,
+			date=datetime.date.today()).order_by('theatre')
+		show_list = []
+		show_by_theatre = []
+		theatre = shows[0].theatre
+		for i in range(0, len(shows)):
+			if theatre != shows[i].theatre:
+				theatre = shows[i].theatre
+				show_list.append(show_by_theatre)
+				show_by_theatre = []
+			show_by_theatre.append(shows[i])
+
+		show_list.append(show_by_theatre)
+
+	except Movie.DoesNotExist:
+		raise Http404("Page does not exist")
+	return render(request, 'movie/movie_details.html',
+		{'movie_info': movie_info, 'show_list': show_list})
