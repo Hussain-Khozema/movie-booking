@@ -21,11 +21,11 @@ from django.urls import include, path
 from django.conf import settings
 
 urlpatterns = [
-    url(r'.*', include('movie.urls')),
     url(r'^home/', include('home.urls')),
     url(r'^theatre/', include('theatre.urls')),
     url(r'^admin/', admin.site.urls),
     path('admin/', admin.site.urls),
+    url(r'.*', include('movie.urls')),
 ]
 
 if settings.DEBUG:
