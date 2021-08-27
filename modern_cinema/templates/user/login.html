@@ -7,7 +7,7 @@
 <body>
     <div id="loginModal">
         {% block login_holder %}
-        <form id="login_form" method="post" action="/accounts/login/">
+        <form id="login_form" method="post" action="/user/login/">
             {% csrf_token %}
             <input type="hidden" name="next" value="{% if next %}{{ next }}{% else %}{{ request.path }}{% endif %}" />
             <div class="form-group">
@@ -19,7 +19,7 @@
                 <input type="password" class="form-control"  name="password" value="" size="50" >
             </div>
             <div class="pull-right">
-                <a role="button" href="/accounts/register/" class="btn btn-default">Register</a>
+                <a role="button" href="/user/register/" class="btn btn-default">Register</a>
                 <input class="btn btn-primary" type="submit" value="Sign In" />
             </div>
         </form>
