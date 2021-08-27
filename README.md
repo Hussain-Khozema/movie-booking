@@ -4,7 +4,6 @@
 - CD into the modern_cinema directory
 - run `pip install -r requirements.txt'
 - run `python manage.py migrate`
-- run `python manage.py createsuperuser` to create admin account
 - run `python manage.py makemigrations`
 - run `python manage.py migrate`
 - run `python manage.py runserver`
