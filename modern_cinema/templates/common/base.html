@@ -49,14 +49,11 @@
           <li class="nav-item active">
             <a class="nav-link" href="#">Book Ticket <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item active pl-3">
-              <form class="form-inline">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
-          </li>
           <li class="nav-item active pl-lg-5">
               {% if request.user.is_authenticated %}
+                  <li class="d-flex p-2">
+                      <h5>WELCOME {{user.username}}</h5>
+                  </li>
                   <a href="/user/logout">
                   <button type="button" class="btn btn-danger">Sign Out</button>
                   </a>
@@ -65,10 +62,12 @@
                   <button type="button" class="btn btn-danger">Login/Signup</button>
                   </a>
               {% endif %}
-
           </li>
         </ul>
-
+            <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
       </div>
       </div>
     </nav>
