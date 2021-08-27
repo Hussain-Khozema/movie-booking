@@ -20,7 +20,7 @@
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
     {% block title %}
     {% endblock %}
-{#    <script src="{% static "js/common.js" %}"></script>#}
+    <script src="{% static "js/common.js" %}"></script>
 </head>
 <body>
 
@@ -56,34 +56,15 @@
               </form>
           </li>
           <li class="nav-item active pl-lg-5">
+              <a href="/user/login">
               <button type="button" class="btn btn-danger">Login/Signup</button>
+              </a>
           </li>
         </ul>
 
       </div>
       </div>
     </nav>
-
-{#    <div id="loginModal">#}
-{#        {% block login_holder %}#}
-{#        <form id="login_form" method="post" action="/accounts/login/">#}
-{#            {% csrf_token %}#}
-{#            <input type="hidden" name="next" value="{% if next %}{{ next }}{% else %}{{ request.path }}{% endif %}" />#}
-{#            <div class="form-group">#}
-{#                <label>Username: </label>#}
-{#                <input type="text" class="form-control"  name="username" value="" size="50" >#}
-{#            </div>#}
-{#            <div class="form-group">#}
-{#                <label>Password: </label>#}
-{#                <input type="password" class="form-control"  name="password" value="" size="50" >#}
-{#            </div>#}
-{#            <div class="pull-right">#}
-{#                <a role="button" href="/accounts/register/" class="btn btn-default">Register</a>#}
-{#                <input class="btn btn-primary" type="submit" value="Sign In" />#}
-{#            </div>#}
-{#        </form>#}
-{#        {% endblock %}#}
-{#    </div>#}
 
 <div id="content" class="container-fluid">
     {% block content %}
