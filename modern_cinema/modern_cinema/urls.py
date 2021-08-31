@@ -21,9 +21,9 @@ from django.urls import include, path
 from django.conf import settings
 
 urlpatterns = [
+    path('', include('home.urls')),
     url(r'^theatre/', include('theatre.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^movie/', include('home.urls')),
     url(r'^user/', include('user.urls')),
 ]
 
