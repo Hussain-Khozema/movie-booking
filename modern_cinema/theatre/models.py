@@ -6,12 +6,7 @@ from movie.models import Movie
 
 class Theatre(models.Model):
     city_choice=(
-        ('DELHI','Delhi'),
-        ('KOLKATA','Kolkata'),
-        ('MUMBAI','Mumbai'),
-        ('CHENNAI','Chennai'),
-        ('BANGALORE','Bangalore'),
-        ('HYDERABAD','Hyderabad'),
+        ('Singapore','Singapore'),
     )
     name = models.CharField(max_length=50,null=False)
     city = models.CharField(max_length=9,choices=city_choice,null=False)

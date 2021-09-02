@@ -6,13 +6,9 @@ from django.db import models
 class Movie(models.Model):
     lang_choice = (
         ('ENGLISH', 'English'),
-        ('BENGALI', 'Bengali'),
+        ('CHINESE', 'Chinese'),
         ('HINDI', 'Hindi'),
         ('TAMIL', 'Tamil'),
-        ('TELUGU', 'Telugu'),
-        ('MALAYALAM', 'Malayalam'),
-        ('MARATHI', 'Marathi'),
-        ('FRENCH', 'French'),
     )
     rating_choice = (
         ('G', 'G'),
