@@ -4,25 +4,11 @@ from movie.models import Movie
 
 # Create your models here.
 
-class Theatre(models.Model):
-    city_choice=(
-        ('Singapore','Singapore'),
-    )
-    name = models.CharField(max_length=50,null=False)
-    city = models.CharField(max_length=9,choices=city_choice,null=False)
-    address = models.CharField(max_length=30)
-    no_of_screen = models.IntegerField()
-    admin_id = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name+"-"+self.address+"-"+self.city
-
 class Show(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    theatre = models.ForeignKey(Theatre, on_delete=models.CASCADE)
     screen = models.IntegerField()
     date = models.DateField()
     time = models.TimeField()
 
     def __str__(self):
-        return str(self.movie) + "-" + str(self.theatre) + "-" + str(self.date) + "-" + str(self.time)
+        return str(self.movie) + "-" + "-" + str(self.date) + "-" + str(self.time)
