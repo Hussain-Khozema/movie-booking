@@ -5,33 +5,42 @@
 {% endblock %}
 
 {% block content %}
-
-	{% for category in movies %}
+    <div class="text-center">
+        <h2>All MOVIES</h2>
+    </div>
 	<div class="jumbotron">
-        <div class="text-center">
-        	<h2>{{ category.0.language }} MOVIES</h2>
+        <div class="row row-cols-4">
+            {% for movie in movies %}
+	        <div class="col border">
+	            <img src="{{ MEDIA_URL }}/media/{{ movie.image }}" width="200" height="200" alt="{{ movie.name }}" class="img-thumbnail">
+                    <h3><a href="{% url 'movie_details' movie.id %}">{{ movie.name }}</a></h3>
+                    <p>Cast: {{ movie.cast }}</p>
+                    <p>{{ movie.language }} | {{ movie.certificate }}</p>
+                <p class="text-primary"><a onclick="watchTrailer('{{ movie.name }}','{{ movie.trailer }}')" role="button">Watch Trailer</a></p>
+                <p><a class="btn btn-success" href="{% url 'movie_details' movie.id %}" role="button">Book Now</a></p>
+            </div>
+            	{% endfor %}
         </div>
-        <div class="row">
-		{% for movie in category %}
-	        <div class="col-sm-4">
-	        	<div class="thumbnail">
-	            	<img src="{{ MEDIA_URL }}/media/{{ movie.image }}" alt="{{ movie.name }}">
-	            	<div class="caption">
-	              		<h3><a href="{% url 'movie_details' movie.id %}">{{ movie.name }}</a></h3>
-	              		<p>{{ movie.cast }}</p>
-	              		<p>{{ movie.language }} | {{ movie.certificate }}</p>
-	              		<p><a class="btn btn-default" onclick="watchTrailer('{{ movie.name }}','{{ movie.trailer }}')" role="button">Watch Trailer</a> <a class="btn btn-primary" href="{% url 'movie_details' movie.id %}" role="button">Book Now</a></p>
-	           		 </div>
-	          	</div>
-	        </div>
-	    {% if forloop.counter|divisibleby:3 or forloop.counter == category|length %}
-	    </div>
-	    {% endif %}
-	    {% if forloop.counter != category|length %}
-	    <div class="row">
-	    {% endif %}
-	    {% endfor %}
-	</div>
-	{% endfor %}
+{#        <div class="row">#}
+{#		{% for movie in category %}#}
+{#	        <div class="col-sm">#}
+{#	        	<div class="thumbnail">#}
+{#	            	<img src="{{ MEDIA_URL }}/media/{{ movie.image }}" alt="{{ movie.name }}" class="img-thumbnail">#}
+{#	            	<div class="caption">#}
+{#	              		<h3><a href="{% url 'movie_details' movie.id %}">{{ movie.name }}</a></h3>#}
+{#	              		<p>{{ movie.cast }}</p>#}
+{#	              		<p>{{ movie.language }} | {{ movie.certificate }}</p>#}
+{#	              		<p><a class="btn btn-default" onclick="watchTrailer('{{ movie.name }}','{{ movie.trailer }}')" role="button">Watch Trailer</a> <a class="btn btn-primary" href="{% url 'movie_details' movie.id %}" role="button">Book Now</a></p>#}
+{#	           		 </div>#}
+{#	          	</div>#}
+{#	        </div>#}
+{#	    {% if forloop.counter|divisibleby:3 or forloop.counter == category|length %}#}
+{#	    </div>#}
+{#	    {% endif %}#}
+{#	    {% if forloop.counter != category|length %}#}
+{#	    <div class="row">#}
+{#	    {% endif %}#}
+{#	    {% endfor %}#}
 
+	</div>
 {% endblock %}

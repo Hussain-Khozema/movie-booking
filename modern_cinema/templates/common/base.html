@@ -23,8 +23,8 @@
     <script src="{% static "js/common.js" %}"></script>
 </head>
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a href="/"><img class="media-object" src="/media/logo.jpg"} href="/" width="50" height="50" alt="{{ movie.name }}"></a>
         <a class="navbar-brand" href="/">Kim's Convenience Modern Cinema</a>
       <div class="container-fluid">
 
@@ -39,10 +39,10 @@
           <li class="nav-item active pl-lg-5">
               {% if request.user.is_authenticated %}
                   <li class="d-flex p-2">
-                      <h5>WELCOME {{user.username}}</h5>
+                    <h5>WELCOME {{user.username}}</h5>
                   </li>
                   <a href="/user/logout">
-                  <button type="button" class="btn btn-danger">Sign Out</button>
+                    <button type="button" class="btn btn-danger">Sign Out</button>
                   </a>
               {% else %}
                   <a href="/user/login">
