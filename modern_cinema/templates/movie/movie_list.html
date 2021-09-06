@@ -16,7 +16,7 @@
                     <h3><a href="{% url 'movie_details' movie.id %}">{{ movie.name }}</a></h3>
                     <p>Cast: {{ movie.cast }}</p>
                     <p>{{ movie.language }} | {{ movie.certificate }}</p>
-                <p class="text-primary"><a onclick="watchTrailer('{{ movie.name }}','{{ movie.trailer }}')" role="button">Watch Trailer</a></p>
+                <p class="text-primary"><a id="trailer-btn" name="{{ movie.name }}" data-movie-trailer="{{ movie.trailer }}" role="button" data-toggle="modal" data-target="#trailer-modal">Watch Trailer</a></p>
                 <p><a class="btn btn-success" href="{% url 'movie_details' movie.id %}" role="button">Book Now</a></p>
             </div>
             	{% endfor %}
@@ -43,4 +43,16 @@
 {#	    {% endfor %}#}
 
 	</div>
+    <div class="modal fade" id="trailer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+              <div id="trailer-container"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock %}

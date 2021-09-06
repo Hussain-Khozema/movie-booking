@@ -1,41 +1,24 @@
 $( function() {
-	signIn = $( "#loginModal" ).dialog({
-      autoOpen: false,
-      resizable: false,
-      title:"Sign In",
-      height: 250,
-      width: 400,
-      modal: true
-    });
-    $( "#signIn" ).on( "click", function() {
-      signIn.dialog( "open" );
-    });
+    alert("Im loaded");
+    $("#trailer-btn").on( "click", function () {
+        console.log("Test");
+        var url = $(this).attr("data-movie-trailer");
+        var name = $(this).attr("name");
 
-
-	setCity = $( "#cityModal" ).dialog({
-      autoOpen: false,
-      resizable: false,
-      title:"Select City",
-      height: 100,
-      width: 450,
-      modal: true,
-    });
-    $( "#selectCity" ).on( "click", function() {
-      setCity.dialog( "open" );
+        var frame= document.createElement("iframe");
+        frame.setAttribute("src", url);
+        frame.frameBorder = 0;
+        frame.style.width = "1165";
+        frame.style.height = "545";
+        document.getElementById("trailer-container").appendChild(frame);
     });
 });
 
 function watchTrailer(name,url){
 	html = '<iframe width="1165" height="545" src="'+url+'" frameborder="0" allowfullscreen></iframe>';
-	$('<div />').html(html).dialog({
-      resizable: false,
-      height: 600,
-      title: name,
-      width: 1200,
-      modal: true,
-  	  close: function(){$(this).remove()}
-  	});
+	$('<div />').html(html);
 }
+
 
 function createSeatArray() {
 	var seats_per_row = 15;
