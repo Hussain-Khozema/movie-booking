@@ -58,7 +58,7 @@
 		<div class="media">
 		  <div class="media-body">
 		    <ul>
-		      <li><a href="a">{{ show.date|date:"d M (l)" }} {{ show.time|time:"h:i A" }}</a></li>
+		      <li><a href="{% url 'reserve_seat' show.id %}">{{ show.date|date:"d M (l)" }} {{ show.time|time:"h:i A" }}</a></li>
 		    </ul>
 		  </div>
 		</div>
