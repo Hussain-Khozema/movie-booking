@@ -53,6 +53,16 @@
   <div class="panel-heading">
     <h3 class="panel-title">Now Showing</h3>
   </div>
+  <div class="panel-body">
+		{% for show in show_list %}
+		<div class="media">
+		  <div class="media-body">
+		    <ul>
+		      <li><a href="a">{{ show.date|date:"d M (l)" }} {{ show.time|time:"h:i A" }}</a></li>
+		    </ul>
+		  </div>
+		</div>
+		{% endfor %}
   </div>
 </div>
 

@@ -11,4 +11,4 @@ class Show(models.Model):
     time = models.TimeField()
 
     def __str__(self):
-        return str(self.movie) + "-" + "-" + str(self.date) + "-" + str(self.time)
+        return str(self.movie) + "-" + str(self.date) + "-" + str(self.time)
