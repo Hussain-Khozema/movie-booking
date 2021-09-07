@@ -1,5 +1,4 @@
 $( function() {
-    alert("Im loaded");
     $("#trailer-btn").on( "click", function () {
         console.log("Test");
         var url = $(this).attr("data-movie-trailer");
