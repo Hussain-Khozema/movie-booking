@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'user.apps.UserConfig',
     'movie.apps.MovieConfig',
+    'booking.apps.BookingConfig',
     'home.apps.HomeConfig',
     'theatre.apps.TheatreConfig',
     'django.contrib.admin',
