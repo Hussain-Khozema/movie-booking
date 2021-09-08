@@ -19,6 +19,7 @@ class Movie(models.Model):
         ('R21', 'R21')
     )
     name = models.CharField(max_length=20)
+    movie_id = models.CharField(max_length=20)
     cast = models.CharField(max_length=100)
     director = models.CharField(max_length=20)
     language = models.CharField(max_length=10, choices=lang_choice)
