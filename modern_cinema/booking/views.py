@@ -1,7 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render, redirect
 from .models import *
-from theatre.models import Show
+from booking.models import Show
 from .forms import SeatForm, BookingForm
 import datetime
 
