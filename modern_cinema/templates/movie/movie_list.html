@@ -5,10 +5,29 @@
 {% endblock %}
 
 {% block content %}
+  {% if logged_in %}
+  <div class="jumbotron">
     <div class="text-center">
-        <h2>All MOVIES</h2>
+        <h2>RECOMMENDED FOR YOU</h2>
     </div>
+        <div class="row row-cols-4">
+            {% for movie in recommended_movies %}
+          <div class="col border">
+              <img src="{{ MEDIA_URL }}/media/{{ movie.image }}" width="200" height="200" alt="{{ movie.name }}" class="img-thumbnail">
+                    <h3><a href="{% url 'movie_details' movie.id %}">{{ movie.name }}</a></h3>
+                    <p>Cast: {{ movie.cast }}</p>
+                    <p>{{ movie.language }} | {{ movie.certificate }}</p>
+                <p class="text-primary"><a id="trailer-btn" name="{{ movie.name }}" data-movie-trailer="{{ movie.trailer }}" role="button" data-toggle="modal" data-target="#trailer-modal">Watch Trailer</a></p>
+                <p><a class="btn btn-success" href="{% url 'movie_details' movie.id %}" role="button">Book Now</a></p>
+            </div>
+              {% endfor %}
+        </div>
+  {% endif %}
+
 	<div class="jumbotron">
+    <div class="text-center">
+        <h2>ALL MOVIES</h2>
+    </div>
         <div class="row row-cols-4">
             {% for movie in movies %}
 	        <div class="col border">
