@@ -8,3 +8,6 @@
 - Extract recommender model from file and place in movie-booking/modern_cinema/home
 - run `python manage.py runserver`
 - Run the IP generated in the console and verify everything is working fine
+
+# Deliverable
+Please find the deliverables here: https://github.com/wongyy/movie-booking-deliverables
