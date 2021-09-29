@@ -13,6 +13,12 @@ $( function() {
     });
 });
 
+function watchTrailer(name,url){
+	html = '<iframe width="1165" height="545" src="'+url+'" frameborder="0" allowfullscreen></iframe>';
+	$('<div />').html(html);
+}
+
+
 function createSeatArray() {
 	var seats_per_row = 15;
 	var seats = {'Platinum':2, 'Gold':2, 'Silver':6};
@@ -39,18 +45,6 @@ function createSeatArray() {
 }
 
 $(document).ready(function(){
-
-	if(localStorage.getItem('user_city') != null){
-		$('#selectCity').html(localStorage.getItem('user_city'));
-	}
-
-	$('#cityModal a').click(function(e){
-		var city = $(e.target).text();
-		localStorage.setItem("user_city", city);
-		$('#selectCity').html(localStorage.getItem('user_city'));
-        setCity.dialog( "close" );
-	});
-
 	//create seat array
 	$('.seatArray').append(createSeatArray());
 
