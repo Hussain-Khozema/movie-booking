@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'movie.apps.MovieConfig',
     'booking.apps.BookingConfig',
     'home.apps.HomeConfig',
-    'theatre.apps.TheatreConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
