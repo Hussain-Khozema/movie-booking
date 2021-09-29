@@ -12,7 +12,7 @@
 		<div class="seatArray">
 		</div>
 		<div class="seatForm">
-			<form method="post">
+			<form method="post" action="{% url 'booking_confirmation' %}">
 				{% csrf_token %}
 				{{ form.as_p }}
 				Seats: <input name="selected_seat" id="selected_seat" type="text" readonly />

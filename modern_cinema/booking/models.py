@@ -6,15 +6,8 @@ from movie.models import Movie
 
 
 class Booking(models.Model):
-    payment_choice = (
-        ('Debit Card', 'Debit Card'),
-        ('Credit Card', 'Credit Card'),
-        ('Net Banking', 'Net Banking'),
-        ('Wallet', 'Wallet'),
-    )
     id = models.CharField(primary_key=True, max_length=200)
     timestamp = models.DateTimeField('%Y-%m-%d %H:%M:%S')
-    payment_type = models.CharField(max_length=11, choices=payment_choice)
     paid_amount = models.DecimalField(max_digits=8, decimal_places=2)
     paid_by = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
@@ -33,14 +26,7 @@ class Show(models.Model):
 
 
 class Seat(models.Model):
-    seat_choice = (
-        ('', 'Select'),
-        ('Silver', 'Silver'),
-        ('Gold', 'Gold'),
-        ('Platinum', 'Platinum'),
-    )
     no = models.CharField(max_length=3)
-    seat_type = models.CharField(max_length=8, choices=seat_choice, blank=False)
     show = models.ForeignKey(Show, on_delete=models.CASCADE)
 
     def __str__(self):
