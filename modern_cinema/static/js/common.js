@@ -19,7 +19,7 @@ function watchTrailer(name,url){
 }
 
 function createSeatArray() {
-	var seats_per_row = 15;
+	var seats_per_row = 10;
 	var rows = ['A','B','C','D','E','F','G','H']
 	var seat_array = "<div id='seat_array'><table>";
 	var count = 0;
@@ -36,6 +36,38 @@ function createSeatArray() {
 	seat_array += "</table></div>";
 	return seat_array;
 }
+
+$(document).ready(function(){
+// 	//show available seats of particular type
+// 	$('#id_seat_type').change(function(){
+// 		seat_dict = {};
+// 		$('#selected_seat').attr('value','');
+// 		$('.selectable').removeClass('selectable selected');
+//         var selector = $(this).val();
+//         $('table.'+selector+' td div').addClass('selectable');
+//     });
+//
+    var seat_dict = {};
+
+    //change color of selected seat and update count
+	$(document).on('click', 'div.selectable', function(){
+		var curr_seat = $(this).text();
+		if(curr_seat in seat_dict){
+			delete seat_dict[curr_seat];
+		}
+		else{
+			seat_dict[curr_seat] = curr_seat;
+		}
+		$(this).toggleClass('selected');
+		var selected_seat = [];
+		for(var key in seat_dict)
+		{
+			selected_seat.push(key);
+		}
+		$('input#selected_seat').attr('value',selected_seat);
+		$('#no_of_seats').text(selected_seat.length);
+	});
+});
 
 // function createSeatArray() {
 // 	var seats_per_row = 15;
@@ -62,37 +94,37 @@ function createSeatArray() {
 // 	return seat_array;
 // }
 
-$(document).ready(function(){
-	//create seat array
-	$('.seatArray').append(createSeatArray());
-
-	//show available seats of particular type
-	$('#id_seat_type').change(function(){
-		seat_dict = {};
-		$('#selected_seat').attr('value','');
-		$('.selectable').removeClass('selectable selected');
-        var selector = $(this).val();
-        $('table.'+selector+' td div').addClass('selectable');
-    });
-
-    var seat_dict = {};
-
-    //change color of selected seat
-	$(document).on('click', 'div.selectable', function(){
-		var curr_seat = $(this).text();
-		if(curr_seat in seat_dict){
-			delete seat_dict[curr_seat];
-		}
-		else{
-			seat_dict[curr_seat] = curr_seat;
-		}
-		$(this).toggleClass('selected');
-		var selected_seat = [];
-		for(var key in seat_dict)
-		{
-			selected_seat.push(key);
-		}
-		$('input#selected_seat').attr('value',selected_seat);
-		$('#no_of_seats').text(selected_seat.length);
-	});
-});
+// $(document).ready(function(){
+// 	//create seat array
+// 	$('.seatArray').append(createSeatArray());
+//
+// 	//show available seats of particular type
+// 	$('#id_seat_type').change(function(){
+// 		seat_dict = {};
+// 		$('#selected_seat').attr('value','');
+// 		$('.selectable').removeClass('selectable selected');
+//         var selector = $(this).val();
+//         $('table.'+selector+' td div').addClass('selectable');
+//     });
+//
+//     var seat_dict = {};
+//
+//     //change color of selected seat and update count
+// 	$(document).on('click', 'div.selectable', function(){
+// 		var curr_seat = $(this).text();
+// 		if(curr_seat in seat_dict){
+// 			delete seat_dict[curr_seat];
+// 		}
+// 		else{
+// 			seat_dict[curr_seat] = curr_seat;
+// 		}
+// 		$(this).toggleClass('selected');
+// 		var selected_seat = [];
+// 		for(var key in seat_dict)
+// 		{
+// 			selected_seat.push(key);
+// 		}
+// 		$('input#selected_seat').attr('value',selected_seat);
+// 		$('#no_of_seats').text(selected_seat.length);
+// 	});
+// });
