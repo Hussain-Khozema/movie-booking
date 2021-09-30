@@ -40,7 +40,11 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('/')
+                if 'next' in request.POST and request.POST.get('next') != '/user/login/':
+                    print(request.POST)
+                    return HttpResponseRedirect(request.POST.get('next'))
+                else:
+                    return HttpResponseRedirect('/')
             else:
                 return HttpResponse("Your account is disabled.")
         else:

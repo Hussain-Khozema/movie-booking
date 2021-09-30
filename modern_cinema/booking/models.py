@@ -2,17 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from movie.models import Movie
-
-
-class Booking(models.Model):
-    id = models.CharField(primary_key=True, max_length=200)
-    timestamp = models.DateTimeField('%Y-%m-%d %H:%M:%S')
-    paid_amount = models.DecimalField(max_digits=8, decimal_places=2)
-    paid_by = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-
-    def __str__(self):
-        return str(self.id)
 
 
 class Show(models.Model):
@@ -26,19 +18,38 @@ class Show(models.Model):
 
 
 class Seat(models.Model):
-    no = models.CharField(max_length=3)
+    id = models.IntegerField(primary_key=True)
     show = models.ForeignKey(Show, on_delete=models.CASCADE)
+    booked = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.no + str(self.show)
+        return str(self.id) + '_' + str(self.show)
 
 
-class BookedSeat(models.Model):
-    seat = models.ForeignKey(Seat, on_delete=models.CASCADE)
-    booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
+# function to create seats
+@receiver(post_save, sender=Show)
+def create_seats(sender, instance, created, **kwargs):
+    if created:
+        for seat in range(80):
+            instance.seat_set.create()
 
-    class Meta:
-        unique_together = ('seat', 'booking')
 
-    def __str__(self):
-        return str(self.seat) + '|' + str(self.booking)
+# class Booking(models.Model):
+#     id = models.CharField(primary_key=True, max_length=200)
+#     timestamp = models.DateTimeField('%Y-%m-%d %H:%M:%S')
+#     paid_amount = models.DecimalField(max_digits=8, decimal_places=2)
+#     paid_by = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+#
+#     def __str__(self):
+#         return str(self.id)
+#
+#
+# class BookedSeat(models.Model):
+#     seat = models.ForeignKey(Seat, on_delete=models.CASCADE)
+#     booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
+#
+#     class Meta:
+#         unique_together = ('seat', 'booking')
+#
+#     def __str__(self):
+#         return str(self.seat) + '|' + str(self.booking)

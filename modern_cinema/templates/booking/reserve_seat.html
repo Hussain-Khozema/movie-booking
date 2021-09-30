@@ -1,5 +1,5 @@
 {% extends "common/base.html" %}
-
+{% load index %}
 {% block title %}
     <title>BoxOffice | Reserve Seats</title>
 {% endblock %}
@@ -10,6 +10,19 @@
 	<h2>{{ show_info }}</h2>
 	<div class="seatDiv">
 		<div class="seatArray">
+			<table><tr>
+			{% for seat in seats_info %}
+			{% if forloop.counter0|divisibleby:10 %}
+			</tr>
+			<tr>
+			{% endif %}
+				{% if seat.booked == 0 %}
+			  		<td><div class="selectable"><a> {{ seats_name|index:forloop.counter0 }} </a></div></td>
+				{% else %}
+					<td><div class="seat"><a> {{ seats_name|index:forloop.counter0 }} </a></div></td>
+				{% endif %}
+			{% endfor %}
+			</tr></table>
 		</div>
 		<div class="seatForm">
 			<form method="post" action="{% url 'booking_confirmation' %}">

@@ -16,6 +16,9 @@
     </br>
         <input class="btn btn-primary" type="submit" value="Sign In" />
     </div>
+    {% if request.GET.next %}
+        <input type="hidden" name="next" value="{{ request.GET.next }}">
+    {% endif %}
 </form>
 <div>
   </br>
