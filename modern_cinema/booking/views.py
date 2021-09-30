@@ -33,13 +33,12 @@ def booking_confirmation(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         show = Show.objects.get(pk=show_id)
         seats = seats.split(',')
-
         mapping = {'A':1,'B':2,'C':3,'D':4,'E':5,'F':6,'G':7,'H':8}
         actual_seats = Seat.objects.filter(show=show_id).order_by('id')
-
         for seat in seats:
             letter = seat.strip()[0]
-            position = ((mapping[letter]-1) * 10) + int(seat.strip()[1]) - 1
+            number = seat.strip().replace(letter, "")
+            position = ((mapping[letter]-1) * 10) + int(number) - 1
             Seat.objects.filter(id=actual_seats[position].id).update(booked=1)
         #
         # ticket_price = '15' * len(book_seat)
