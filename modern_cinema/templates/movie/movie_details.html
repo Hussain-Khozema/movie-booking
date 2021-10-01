@@ -10,9 +10,9 @@
 <div class="media">
   <div class="media-left">
     <a href="#">
-      <img class="media-object" src="{{ MEDIA_URL }}/media/{{ movie_info.image }}" alt="{{ movie_info.name }}">
+      <img class="media-object" src="{{ MEDIA_URL }}/media/{{ movie_info.image }}" alt="{{ movie_info.name }}" id="moviePoster">
     </a>
-    <a href="#" style="margin:15px;" onclick="watchTrailer('{{ movie_info.name }}','{{ movie_info.trailer }}')" role="button" class="btn btn-primary btn-sm">Watch Trailer</a>
+    <a href="#" style="margin:15px;" onclick="watchTrailer('{{ movie_info.name }}','{{ movie_info.trailer }}')" role="button" class="btn btn-primary btn-sm" id="detailsBut">Watch Trailer</a>
   </div>
   <div class="media-body form-horizontal">
     <h4 class="media-heading">{{ movie_info.name }}</h4>
@@ -49,7 +49,7 @@
   </div>
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-default" id="showing">
   <div class="panel-heading">
     <h3 class="panel-title">Now Showing</h3>
   </div>

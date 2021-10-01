@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     {% load static %}
-    <link rel="stylesheet" href="{% static "css/style.css" %}">
+
     {% load bootstrap4 %}
 
     {# Load CSS and JavaScript #}
@@ -16,6 +16,7 @@
     {% block title %}
     {% endblock %}
     <script src="{% static 'js/common.js' %}"></script>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">

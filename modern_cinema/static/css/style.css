@@ -1,3 +1,50 @@
+.movieLiStyle {
+  display: flex;
+  border: 2px solid red;
+  align-items: stretch;
+  text-align: center;
+  padding: 10px;
+}
+
+.movieItem {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 0;
+}
+.img-thumbnail {
+  border: 1.5px solid black;
+  min-height: 60%;
+  max-height: 50%;
+}
+
+#normMovie {
+  border: 2px solid black;
+}
+
+#moviePoster {
+  width: 20vw;
+  height: 30vw;
+}
+
+#detailsBut {
+  display: block;
+  position: relative;
+}
+
+.media-body.form-horizontal {
+  padding-left: 20px;
+}
+
+.media-heading {
+  font-size: 60px;
+  padding-left: 10px;
+}
+
+.control-label {
+  font-size: 25px;
+  color: red;
+}
+
 div.seat{
 	width: 2.5em;
 	border-top: 5px solid black;
