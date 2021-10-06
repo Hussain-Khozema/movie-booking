@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ebafc527-16ee-48f7-ae40-864bced79824" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modern_cinema/booking/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/modern_cinema/booking/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modern_cinema/booking/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/modern_cinema/booking/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modern_cinema/booking/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/modern_cinema/booking/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modern_cinema/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/modern_cinema/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modern_cinema/templates/common/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/modern_cinema/templates/common/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modern_cinema/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/modern_cinema/user/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modern_cinema/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/modern_cinema/user/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +46,7 @@
       <updated>1629435658341</updated>
       <workItem from="1629435661234" duration="74000" />
       <workItem from="1630065383597" duration="1194000" />
-      <workItem from="1633502023427" duration="6419000" />
+      <workItem from="1633502023427" duration="7917000" />
     </task>
     <servers />
   </component>
