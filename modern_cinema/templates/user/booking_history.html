@@ -7,5 +7,7 @@
 {% block content %}
 
 	<h1>Booking History</h1>
-
+    {% for booking in bookings %}
+        <h1>{{ booking }}</h1>
+    {% endfor %}
 {% endblock %}

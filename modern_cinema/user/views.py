@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render, redirect
+from booking.models import Booking, BookedSeat
 
 
 # Create your views here.
@@ -60,12 +61,21 @@ def user_logout(request):
 
 
 def booking_history(request, user_id):
-    # seats = request.POST.get('seats')
-    # show_id = request.POST.get('show_id')
-    # seats = seats[1:-1].split(',')
-    # print(seats)
-    # show = Show.objects.get(pk=show_id)
-    # mapping = {'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8}
+    try:
+        bookings = Booking.objects.filter(booked_by=user_id)
+        print(bookings)
+
+    #     seats = Seat.objects.filter(booked_by=user_id)
+    #
+    #     alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+    #     numbers = [x + 1 for x in range(10)]
+    #     seats_name = [x + str(y) for x in alphabets for y in numbers]
+    #
+    except Booking.DoesNotExist:
+        raise Http404("Page does not exist")
+    return render(request, 'user/booking_history.html',
+                  {'bookings': bookings})
+
     # actual_seats = Seat.objects.filter(show=show_id).order_by('id')
     #
     # timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")

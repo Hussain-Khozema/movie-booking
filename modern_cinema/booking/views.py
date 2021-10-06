@@ -47,23 +47,23 @@ def booking_confirmation(request):
         seats = request.POST.get('seats')
         show_id = request.POST.get('show_id')
         seats = seats[1:-1].split(',')
-        print(seats)
+        seats_cleaned = [seat.replace(" ", "").replace("'", "") for seat in seats]
+
         show = Show.objects.get(pk=show_id)
         mapping = {'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8}
         actual_seats = Seat.objects.filter(show=show_id).order_by('id')
 
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         paid_by = request.user
-        booking_id = str(show) + str(seats) + timestamp
+        booking_id = str(show) + ' | ' + str(seats_cleaned) + ' | ' + timestamp
         book = Booking(id=booking_id, timestamp=timestamp, booked_by=paid_by)
         book.save()
 
         booked_seat = []
-        for seat in seats:
+        for seat in seats_cleaned:
             # Change seat to booked
-            element = seat.replace(" ", "").replace("'", "")
-            letter = element[0]
-            number = element.replace(letter, "")
+            letter = seat[0]
+            number = seat.replace(letter, "")
             position = ((mapping[letter] - 1) * 10) + int(number) - 1
             Seat.objects.filter(id=actual_seats[position].id).update(booked=1)
 
@@ -76,7 +76,7 @@ def booking_confirmation(request):
         BookedSeat.objects.bulk_create(booked_seat)
 
         return render(request, 'booking/booking_confirmation.html',
-                      {'seats': seats,
+                      {'seats': seats_cleaned,
                        'show_info': show})
     else:
         return redirect('/')
