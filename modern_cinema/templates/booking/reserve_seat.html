@@ -25,13 +25,13 @@
 			</tr></table>
 		</div>
 		<div class="seatForm">
-			<form method="post" action="{% url 'booking_confirmation' %}">
+			<form method="post" action="{% url 'booking_validation' %}">
 				{% csrf_token %}
 				{{ form.as_p }}
 				Seats: <input name="selected_seat" id="selected_seat" type="text" readonly />
 				<span>Total number of seats: </span><span id="no_of_seats">0</span>
 				<input type="hidden" name="show_id" id="show_id" value="{{ show_info.id }}" readonly />
-				<button type="submit">Confirm</button>
+				<button type="submit">Next</button>
 			</form>
 		</div>
 	</div>

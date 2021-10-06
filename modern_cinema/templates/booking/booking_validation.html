@@ -1,0 +1,20 @@
+{% extends "common/base.html" %}
+
+{% block title %}
+    <title>KCMC | Check booking</title>
+{% endblock %}
+
+{% block content %}
+
+	<h1>Please check your booking details</h1>
+	<h1>show_details: {{show_info}}</h1>
+	<h1>Seats: {{seats}}</h1>
+	<form method="post"  action="{% url 'booking_confirmation' %}">
+		{% csrf_token %}
+	<button class="btn btn-primary" type="submit">Confirm</button>
+	<button type="button" class="btn btn-primary" onclick="history.back()">Cancel</button>
+	<input type="hidden" name="show_id" id="show_id" value="{{ show_info.id }}" readonly />
+	<input type="hidden" name="seats" id="seats" value="{{seats}}" readonly />
+	</form>
+
+{% endblock %}

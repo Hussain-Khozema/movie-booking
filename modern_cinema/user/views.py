@@ -2,12 +2,12 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, Http404
+from django.shortcuts import render, redirect
+from booking.models import Booking, BookedSeat
 
 
 # Create your views here.
-
-
 def register(request):
     registered = False
     if request.method == 'POST':
@@ -28,7 +28,7 @@ def register(request):
         profile_form = UserProfileForm()
 
     return render(request, 'user/register.html', {'user_form': user_form,
-                                                    'profile_form': profile_form, 'registered': registered})
+                                                  'profile_form': profile_form, 'registered': registered})
 
 
 def user_login(request):
@@ -58,3 +58,49 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+
+def booking_history(request, user_id):
+    try:
+        bookings = Booking.objects.filter(booked_by=user_id)
+        print(bookings)
+
+    #     seats = Seat.objects.filter(booked_by=user_id)
+    #
+    #     alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+    #     numbers = [x + 1 for x in range(10)]
+    #     seats_name = [x + str(y) for x in alphabets for y in numbers]
+    #
+    except Booking.DoesNotExist:
+        raise Http404("Page does not exist")
+    return render(request, 'user/booking_history.html',
+                  {'bookings': bookings})
+
+    # actual_seats = Seat.objects.filter(show=show_id).order_by('id')
+    #
+    # timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # paid_by = request.user
+    # booking_id = str(show) + str(seats) + timestamp
+    # book = Booking(id=booking_id, timestamp=timestamp, booked_by=paid_by)
+    # book.save()
+    #
+    # booked_seat = []
+    # for seat in seats:
+    #     # Change seat to booked
+    #     element = seat.replace(" ", "").replace("'", "")
+    #     letter = element[0]
+    #     number = element.replace(letter, "")
+    #     position = ((mapping[letter] - 1) * 10) + int(number) - 1
+    #     Seat.objects.filter(id=actual_seats[position].id).update(booked=1)
+    #
+    #     # Add seat to booked seat
+    #     s = Seat.objects.get(id=actual_seats[position].id)
+    #     b = Booking.objects.get(pk=booking_id)
+    #     booked = BookedSeat(seat=s, booking=b)
+    #     booked_seat.append(booked)
+    #
+    # BookedSeat.objects.bulk_create(booked_seat)
+    #
+    return render(request, 'user/booking_history.html')
+    #               {'seats': seats,
+    #                'show_info': show})
