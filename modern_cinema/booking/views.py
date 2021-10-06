@@ -23,8 +23,7 @@ def reserve_seat(request, show_id):
     return render(request, 'booking/reserve_seat.html',
                   {'show_info': show_info, 'seats_info': seats, "seats_name": seats_name})
 
-
-def booking_confirmation(request):
+def booking_validation(request):
     if request.POST:
         seats = request.POST.get('selected_seat')
         show_id = request.POST.get('show_id')
@@ -33,11 +32,27 @@ def booking_confirmation(request):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         show = Show.objects.get(pk=show_id)
         seats = seats.split(',')
+
+        return render(request, 'booking/booking_validation.html',
+                      {'seats': seats,
+                       'show_info': show})
+    else:
+        return redirect('/')
+
+def booking_confirmation(request):
+    if request.POST:
+        seats = request.POST.get('seats')
+        show_id = request.POST.get('show_id')
+        seats = seats[1:-1].split(',')
+        print(seats)
+        show = Show.objects.get(pk=show_id)
         mapping = {'A':1,'B':2,'C':3,'D':4,'E':5,'F':6,'G':7,'H':8}
         actual_seats = Seat.objects.filter(show=show_id).order_by('id')
         for seat in seats:
-            letter = seat.strip()[0]
-            number = seat.strip().replace(letter, "")
+            element = seat.replace(" ", "").replace("'", "")
+            print(element)
+            letter = element[0]
+            number = element.replace(letter, "")
             position = ((mapping[letter]-1) * 10) + int(number) - 1
             Seat.objects.filter(id=actual_seats[position].id).update(booked=1)
         #
