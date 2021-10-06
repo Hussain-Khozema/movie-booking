@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebafc527-16ee-48f7-ae40-864bced79824" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modern_cinema/booking/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/modern_cinema/booking/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modern_cinema/booking/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/modern_cinema/booking/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modern_cinema/booking/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/modern_cinema/booking/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modern_cinema/booking/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/modern_cinema/booking/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modern_cinema/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/modern_cinema/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modern_cinema/templates/booking/booking_confirmation.html" beforeDir="false" afterPath="$PROJECT_DIR$/modern_cinema/templates/booking/booking_confirmation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modern_cinema/templates/booking/reserve_seat.html" beforeDir="false" afterPath="$PROJECT_DIR$/modern_cinema/templates/booking/reserve_seat.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +33,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/modern_cinema" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../BoxOffice" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -48,7 +46,7 @@
       <updated>1629435658341</updated>
       <workItem from="1629435661234" duration="74000" />
       <workItem from="1630065383597" duration="1194000" />
-      <workItem from="1633502023427" duration="4028000" />
+      <workItem from="1633502023427" duration="6419000" />
     </task>
     <servers />
   </component>

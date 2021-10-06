@@ -22,6 +22,9 @@ class Seat(models.Model):
     show = models.ForeignKey(Show, on_delete=models.CASCADE)
     booked = models.IntegerField(default=0)
 
+    class Meta:
+        unique_together = ('id', 'show')
+
     def __str__(self):
         return str(self.id) + '_' + str(self.show)
 
@@ -34,22 +37,21 @@ def create_seats(sender, instance, created, **kwargs):
             instance.seat_set.create()
 
 
-# class Booking(models.Model):
-#     id = models.CharField(primary_key=True, max_length=200)
-#     timestamp = models.DateTimeField('%Y-%m-%d %H:%M:%S')
-#     paid_amount = models.DecimalField(max_digits=8, decimal_places=2)
-#     paid_by = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-#
-#     def __str__(self):
-#         return str(self.id)
-#
-#
-# class BookedSeat(models.Model):
-#     seat = models.ForeignKey(Seat, on_delete=models.CASCADE)
-#     booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
-#
-#     class Meta:
-#         unique_together = ('seat', 'booking')
-#
-#     def __str__(self):
-#         return str(self.seat) + '|' + str(self.booking)
+class Booking(models.Model):
+    id = models.CharField(primary_key=True, max_length=200)
+    timestamp = models.DateTimeField('%Y-%m-%d %H:%M:%S')
+    booked_by = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return str(self.id)
+
+
+class BookedSeat(models.Model):
+    seat = models.ForeignKey(Seat, on_delete=models.CASCADE)
+    booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('seat', 'booking')
+
+    def __str__(self):
+        return str(self.seat) + '|' + str(self.booking)

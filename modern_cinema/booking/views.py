@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from booking.models import Show
 from django.contrib.auth.decorators import login_required
+import datetime
 
 # from .forms import SeatForm, BookingForm
 import datetime
@@ -23,6 +24,7 @@ def reserve_seat(request, show_id):
     return render(request, 'booking/reserve_seat.html',
                   {'show_info': show_info, 'seats_info': seats, "seats_name": seats_name})
 
+
 def booking_validation(request):
     if request.POST:
         seats = request.POST.get('selected_seat')
@@ -39,6 +41,7 @@ def booking_validation(request):
     else:
         return redirect('/')
 
+
 def booking_confirmation(request):
     if request.POST:
         seats = request.POST.get('seats')
@@ -46,42 +49,32 @@ def booking_confirmation(request):
         seats = seats[1:-1].split(',')
         print(seats)
         show = Show.objects.get(pk=show_id)
-        mapping = {'A':1,'B':2,'C':3,'D':4,'E':5,'F':6,'G':7,'H':8}
+        mapping = {'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8}
         actual_seats = Seat.objects.filter(show=show_id).order_by('id')
+
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        paid_by = request.user
+        booking_id = str(show) + str(seats) + timestamp
+        book = Booking(id=booking_id, timestamp=timestamp, booked_by=paid_by)
+        book.save()
+
+        booked_seat = []
         for seat in seats:
+            # Change seat to booked
             element = seat.replace(" ", "").replace("'", "")
-            print(element)
             letter = element[0]
             number = element.replace(letter, "")
-            position = ((mapping[letter]-1) * 10) + int(number) - 1
+            position = ((mapping[letter] - 1) * 10) + int(number) - 1
             Seat.objects.filter(id=actual_seats[position].id).update(booked=1)
-        #
-        # ticket_price = '15' * len(book_seat)
-        #
-        # seat_str = ""
-        # for i in range(0, len(seats)):
-        #     if i == len(seats) - 1:
-        #         seat_str += seats[i]
-        #     else:
-        #         seat_str += seats[i] + ','
-        #
-        # timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        # paid_by = request.user
-        # id = str(show) + str(seats) + timestamp
-        # book = Booking(id=id, timestamp=timestamp,
-        #                paid_amount=ticket_price, paid_by=paid_by)
-        # book.save()
-        # booked_seat = []
-        #
-        # # for seat in seats:
-        # #     print(seat)
-        # #     s = Seat.objects.get(no=seat, show=show)
-        # #     b = Booking.objects.get(pk=id)
-        # #     booked = BookedSeat(seat=s, booking=b)
-        # #     booked_seat.append(booked)
-        # #
-        # # BookedSeat.objects.bulk_create(booked_seat)
-        #
+
+            # Add seat to booked seat
+            s = Seat.objects.get(id=actual_seats[position].id)
+            b = Booking.objects.get(pk=booking_id)
+            booked = BookedSeat(seat=s, booking=b)
+            booked_seat.append(booked)
+
+        BookedSeat.objects.bulk_create(booked_seat)
+
         return render(request, 'booking/booking_confirmation.html',
                       {'seats': seats,
                        'show_info': show})
