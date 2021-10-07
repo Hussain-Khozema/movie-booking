@@ -7,8 +7,12 @@
 {% block content %}
 
 	<h1>Payment Confirmation</h1>
-	<h1>{{show_info}}</h1>
-	<h1>{{seats}}</h1>
+	<div>
+		<h2>Movie Title: {{show_info.movie}}</h2>
+		<h2>Date: {{show_info.date}}</h2>
+		<h2>Time: {{show_info.time}}</h2>
+		<h3>Seats: {{seats}}</h3>
+	</div>
 	<div class="ticket">
 		Booking Done!
 	</div>
