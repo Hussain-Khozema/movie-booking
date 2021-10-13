@@ -7,7 +7,19 @@
 {% block content %}
 
 	<h1>Booking History</h1>
-    {% for booking in bookings %}
-        <h1>{{ booking }}</h1>
+    <hr class="start"></hr>
+    {% for allBookings in allBookings%}
+        <h1>Movie: {{allBookings.0}}</h1>
+        <h2>Date/Time: {{allBookings.2}}</h2>
+        <h3>Seat: {{allBookings.1}}</h3>
+        <hr></hr>
     {% endfor %}
 {% endblock %}
+
+
+<!-- <div>
+    <h2>Movie Title: {{booking.movie}}</h2>
+    <h2>Date: {{booking.date}}</h2>
+    <h2>Time: {{booking.time}}</h2>
+    <h3>Seats: {booking.seats}}</h3>
+</div> -->

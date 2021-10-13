@@ -141,7 +141,7 @@ div.carousel-caption {
 }
 
 #showing li {
-  float: left;
+  display: block !important;
   list-style: none;
   text-align: center;
   background-color: greenyellow;
@@ -155,4 +155,45 @@ div.carousel-caption {
 }
 #showing li a {
   color: black;
+}
+
+#legend {
+  float: left;
+  position: relative;
+  top: 330px;
+  right: 715px;
+}
+
+#legend-available {
+  width: 2.5rem;
+  border-top: 5px solid green !important;
+  border-left: 2px solid green !important;
+  border-right: 2px solid green !important;
+  margin: 5px;
+  text-align: center;
+}
+
+#legend-unavailable {
+  width: 2.5rem;
+  border-top: 5px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  margin: 5px;
+  text-align: center;
+}
+
+#legend-selected {
+  width: 2.5rem;
+  margin: 5px;
+  border-top: 3px solid blue !important;
+  border-left: 1px solid blue !important;
+  border-right: 1px solid blue !important;
+  text-align: center;
+}
+
+#content hr {
+  border-top: 3px dashed black;
+}
+#content hr.start {
+  border-top: 3px solid black;
 }

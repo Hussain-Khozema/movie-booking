@@ -4,7 +4,7 @@ from .forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render, redirect
-from booking.models import Booking, BookedSeat
+from booking.models import Booking, BookedSeat, Show
 
 
 # Create your views here.
@@ -62,9 +62,19 @@ def user_logout(request):
 
 def booking_history(request, user_id):
     try:
+        allBookings = []
         bookings = Booking.objects.filter(booked_by=user_id)
-        print(bookings)
+        for booking in bookings:
+            bookingDetail = []
+            movieDetail, seats, timeDetail = booking.id.split('|')
+            movie = movieDetail.split("--", 1)
+            movieName = movie[0]
+            bookingDetail.append(movieName)
+            bookingDetail.append(seats)
+            bookingDetail.append(timeDetail)
+            allBookings.append(bookingDetail)
 
+        print(allBookings)
     #     seats = Seat.objects.filter(booked_by=user_id)
     #
     #     alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
@@ -74,7 +84,7 @@ def booking_history(request, user_id):
     except Booking.DoesNotExist:
         raise Http404("Page does not exist")
     return render(request, 'user/booking_history.html',
-                  {'bookings': bookings})
+                  {'allBookings': allBookings})
 
     # actual_seats = Seat.objects.filter(show=show_id).order_by('id')
     #

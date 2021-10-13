@@ -6,8 +6,8 @@
 
 {% block content %}
 
-	<h1>Show Details</h1>
-	<h2>{{ show_info }}</h2>
+	<h1>{{ show_info.movie }} Show Details</h1>
+	<h2> Date: {{ show_info.date}} Time: {{show_info.time}}</h2>
 	<div class="seatDiv">
 		<div class="seatArray">
 			<table><tr>
@@ -34,6 +34,39 @@
 				<button type="submit">Next</button>
 			</form>
 		</div>
+		
+
 	</div>
+	
+	<div id="legend">
+		<h3>Legend</h3> 
+		<div>
+			<label id="legend-available">
+				A1
+			</label>
+			<i>
+				- Available
+			</i>
+		</div>
+		<div>
+			<label id="legend-unavailable">
+				A1
+			</label>
+			<i>
+				- Unavailable
+			</i>
+		</div>
+
+		<div>
+			<label id="legend-selected">
+				A1
+			</label>
+			<i>
+				- Selected
+			</i>
+		</div>
+		
+	</div>
+
 
 {% endblock %}
